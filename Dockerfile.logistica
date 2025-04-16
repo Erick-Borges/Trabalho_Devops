@@ -1,0 +1,15 @@
+FROM python:3.9-slim
+
+WORKDIR /app
+
+COPY requirements_logistica.txt .
+
+RUN pip install --no-cache-dir -r requirements_logistica.txt
+
+COPY logistica_api.py .
+
+ENV RASTREAMENTO_API_URL=http://rastreamento-api-svc:5001
+
+EXPOSE 5000
+
+CMD ["python", "logistica_api.py"]
